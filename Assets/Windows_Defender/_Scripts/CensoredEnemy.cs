@@ -8,6 +8,7 @@ public class CensoredEnemy : MonoBehaviour
     
     void Start()
     {
-
+        Enemy e = enemies[Random.Range(0, enemies.Length)];
+        gameObject.AddComponent(e.GetType());
     }
 }
