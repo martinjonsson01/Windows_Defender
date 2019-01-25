@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Enemy))]
-public class StandardEnemy : Enemy
+public class Article13Enemy : Enemy
 {
     void Start()
     {
         base.Start();
 
-        movementSpeed = 5;
+        movementSpeed = 3;
 
-        SetDirection(1);
+        canFlipSprite = false;
+        SetDirection(-1);
     }
 }
