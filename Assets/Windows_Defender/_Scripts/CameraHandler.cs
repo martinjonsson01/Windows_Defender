@@ -7,10 +7,13 @@ public class CameraHandler : MonoBehaviour
     Vector3 originalPosition;
 
     float shakeTimer;
+    float maxShake;
 
     void Start()
     {
         originalPosition = transform.position;
+
+        maxShake = 0.7f;
 
         Shake(3);
     }
@@ -20,8 +23,11 @@ public class CameraHandler : MonoBehaviour
         shakeTimer -= Time.deltaTime;
         shakeTimer = Mathf.Max(shakeTimer, 0);
 
+
+        float clampedShakeTimer = Mathf.Min(shakeTimer, maxShake);
+
         transform.position = originalPosition + 
-            new Vector2(Random.Range(-shakeTimer, shakeTimer), Random.Range(-shakeTimer, shakeTimer));
+            new Vector3(Random.Range(-clampedShakeTimer, clampedShakeTimer), Random.Range(-clampedShakeTimer, clampedShakeTimer), 0);
     }
 
     public void Shake(float time)
