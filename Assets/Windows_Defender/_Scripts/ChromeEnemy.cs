@@ -17,6 +17,8 @@ public class ChromeEnemy : Enemy
 
         canFlipSprite = false;
         SetDirection(1);
+
+        ChanceForGlitchComponent(50);
     }
 
     new void Update()

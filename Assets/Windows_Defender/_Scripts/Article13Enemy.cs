@@ -15,5 +15,7 @@ public class Article13Enemy : Enemy
 
         canFlipSprite = false;
         SetDirection(1);
+
+        ChanceForGlitchComponent(50);
     }
 }

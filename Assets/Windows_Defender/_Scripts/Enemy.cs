@@ -39,11 +39,7 @@ public class Enemy : MonoBehaviour
         cam = Camera.main.GetComponent<CameraHandler>();
 
         movementScale = 1;
-
-        // Finns en möjlighet att fienden blir "buggig"
-        if (Random.Range(0, 100) > 0)
-            gameObject.AddComponent<GlitchMovement>();
-
+        
         sprite = GetComponent<SpriteRenderer>().sprite;
     }
 
@@ -52,6 +48,11 @@ public class Enemy : MonoBehaviour
         // Flytta fienden åt sidorna, samtidigt som den behåller gravitationen
         rigidbody.velocity = (Vector2.right * direction * movementSpeed * movementScale) + (Vector2.up * rigidbody.velocity.y);
 
+        InsideScreen();
+    }
+
+    protected void InsideScreen()
+    {
         // Se till att fienden inte går utanför skärmen
         Vector3 leftSide = Camera.main.WorldToViewportPoint(
             transform.position - Vector3.right * (sprite.rect.width / sprite.pixelsPerUnit) / 2
@@ -62,8 +63,20 @@ public class Enemy : MonoBehaviour
 
         if (leftSide.x < 0 || rightSide.x > 1)
         {
-            SetDirection((int) -Mathf.Sign(transform.position.x));
+            SetDirectionToMiddle();
         }
+    }
+
+    public void SetDirectionToMiddle()
+    {
+        SetDirection((int)-Mathf.Sign(transform.position.x));
+    }
+
+    protected void ChanceForGlitchComponent(float percent)
+    {
+        // Finns en möjlighet att fienden blir "buggig"
+        if (Random.Range(0, 100) < percent)
+            gameObject.AddComponent<GlitchMovement>();
     }
 
     public void SetDirection(int d)
@@ -82,7 +95,7 @@ public class Enemy : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D other)
     {
         string t = other.gameObject.tag;
-        if (t == WindowTags.TAG1 || t == WindowTags.TAG2 || t == WindowTags.TAG3)
+        if (t == WindowTags.TAG1 || t == WindowTags.TAG2)
         {
             float windowTopY = other.gameObject.GetComponent<Window>().GetTop();
             float enemyBottonY = transform.position.y - transform.localScale.y * 0.9f;
@@ -131,6 +144,5 @@ public class WindowTags
 {
     public static readonly string TAG1 = "Window";
     public static readonly string TAG2 = "Foreground Window";
-    public static readonly string TAG3 = "Background Window";
-    public static readonly string[] ALLTAGS = new string[] { TAG1, TAG2, TAG3 };
+    public static readonly string[] ALLTAGS = new string[] { TAG1, TAG2 };
 }
