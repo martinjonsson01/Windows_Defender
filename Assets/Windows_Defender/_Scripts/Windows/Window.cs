@@ -17,17 +17,22 @@ public class Window : MonoBehaviour
 
     protected SortingGroup sortingGroup;
 
-    private GameObject resizeHandle;
-
+    private GameObject _resizeHandle;
+    
     /// <summary>
     /// Whether or not the attribute of this window is active or not.
     /// </summary>
     public bool AttributeActive = true;
-
+    
     /// <summary>
     /// Whether or not this window is resizable.
     /// </summary>
     public bool Resizable = false;
+
+    /// <summary>
+    /// The durability of this window.
+    /// </summary>
+    public float Durability = 200;
 
     /// <summary>
     /// Gets the movement speed coefficient of this window.
@@ -45,15 +50,15 @@ public class Window : MonoBehaviour
         windowCollider = transform.GetComponent<BoxCollider2D>();
         handleCollider = transform.Find("Handle").GetComponent<BoxCollider2D>();
         sortingGroup = GetComponent<SortingGroup>();
-        resizeHandle = transform.Find("ResizeHandle").gameObject;
+        _resizeHandle = transform.Find("ResizeHandle").gameObject;
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
         // Make resize handle hidden if window not resizable.
-        if (resizeHandle.activeSelf != Resizable)
-            resizeHandle.SetActive(Resizable);
+        if (_resizeHandle.activeSelf != Resizable)
+            _resizeHandle.SetActive(Resizable);
     }
 
     public virtual void OnMouseDown()
@@ -81,6 +86,8 @@ public class Window : MonoBehaviour
     public virtual void SetPosition(Vector3 pos)
     {
         transform.position = pos;
+
+
     }
 
     /// <summary>
