@@ -17,7 +17,7 @@ public class SoundScript : MonoBehaviour
     }
     private void Update()
     {
-        if (WindowsHome == null&&playdeath == true)
+        if (WindowsHome.GetComponent<WindowsButton>().health <=0&&playdeath == true)
         {
             PlayDeathSound();
             playdeath = false;

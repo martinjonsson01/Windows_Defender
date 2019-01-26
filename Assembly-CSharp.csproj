@@ -60,13 +60,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CloseDownPC.cs" />
+    <Compile Include="Assets\ErrorSpawner.cs" />
     <Compile Include="Assets\Windows_Defender\_Scripts\Article13Enemy.cs" />
     <Compile Include="Assets\Windows_Defender\_Scripts\CensoredEnemy.cs" />
+    <Compile Include="Assets\Windows_Defender\_Scripts\CloseDownPC.cs" />
     <Compile Include="Assets\Windows_Defender\_Scripts\Enemy.cs" />
     <Compile Include="Assets\Windows_Defender\_Scripts\SoundScript.cs" />
     <Compile Include="Assets\Windows_Defender\_Scripts\StandardEnemy.cs" />
     <Compile Include="Assets\Windows_Defender\_Scripts\test.cs" />
+    <Compile Include="Assets\Windows_Defender\_Scripts\WindowsButton.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/elliot.bodin1/Documents/GitHub/Windows_Defender/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
