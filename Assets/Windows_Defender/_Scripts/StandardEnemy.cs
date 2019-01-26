@@ -12,5 +12,7 @@ public class StandardEnemy : Enemy
         movementSpeed = 5;
 
         SetDirection(-1);
+
+        ChanceForGlitchComponent(50);
     }
 }

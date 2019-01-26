@@ -51,6 +51,8 @@ TagManager:
   - name: Foreground Window
     uniqueID: 801620443
     locked: 0
+  - name: Enemy
+    uniqueID: 3491231341
   - name: Shutdown
     uniqueID: 704830915
     locked: 0

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartScript : MonoBehaviour
+public class closeScript : MonoBehaviour
 {
     void OnMouseDown()
     {
-        print("nibber");
+        print("close");
     }
 }

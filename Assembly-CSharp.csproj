@@ -60,10 +60,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\closeScript.cs" />
     <Compile Include="Assets\ErrorSpawner.cs" />
     <Compile Include="Assets\Script(Elliot)\ElliotIsTryingSomethingHeSouldNotTouch.cs" />
     <Compile Include="Assets\Script(Elliot)\EnemySpawner.cs" />
     <Compile Include="Assets\Script(Elliot)\PappersKorgsScript.cs" />
+    <Compile Include="Assets\Script(Elliot)\QuitScript.cs" />
     <Compile Include="Assets\Script(Elliot)\StartScript.cs" />
     <Compile Include="Assets\Scripts\Standard_Enemy_Script.cs" />
     <Compile Include="Assets\Windows_Defender\_Scripts\Article13Enemy.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="Assets\Windows_Defender\_Scripts\Windows\WindowResize.cs" />
     <Compile Include="Assets\Windows_Defender\_Scripts\WindowsButton.cs" />
     <Compile Include="Assets\Windows_Defender\_Scripts\VirusEnemy.cs" />
+    <Compile Include="Assets\Windows_Defender\_Scripts\VirusLegs.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
