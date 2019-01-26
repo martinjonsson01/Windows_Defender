@@ -4,6 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Window
+  - Foreground Window
   - Enemy
   layers:
   - Default
@@ -41,4 +43,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background Window
+    uniqueID: 4008242311
+    locked: 0
+  - name: Foreground Window
+    uniqueID: 801620443
     locked: 0
