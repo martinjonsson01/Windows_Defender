@@ -14,8 +14,6 @@ public class CameraHandler : MonoBehaviour
         originalPosition = transform.position;
 
         maxShake = 0.7f;
-
-        Shake(3);
     }
 
     void Update()

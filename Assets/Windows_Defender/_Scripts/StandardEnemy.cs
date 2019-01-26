@@ -5,12 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(Enemy))]
 public class StandardEnemy : Enemy
 {
-    void Start()
+    new void Start()
     {
         base.Start();
 
         movementSpeed = 5;
 
-        SetDirection(1);
+        SetDirection(-1);
     }
 }
