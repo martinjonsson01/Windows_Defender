@@ -135,7 +135,7 @@ public class ErrorSpawner : MonoBehaviour
                 posy = Random.Range(6, 12);
                 chooselocation = new Vector3(posx, posy, -1);
                 chooseError = Random.Range(0, Errors.Length);
-                GameObject temp = Instantiate(Errors[(int)Random.Range(11,13)], chooselocation, Quaternion.identity);
+                GameObject temp = Instantiate(Errors[(int)Random.Range(11, 13)], chooselocation, Quaternion.identity);
                 errorcreated++;
                 temp.GetComponent<Rigidbody2D>().gravityScale = 1;
                 temp.GetComponent<BoxCollider2D>().enabled = true;
