@@ -11,9 +11,13 @@ public class Enemy : MonoBehaviour
     protected float movementSpeed;
     protected float attackPower;
 
+    protected float landingShake;
+
     protected int direction;
 
     protected bool canFlipSprite = true;
+
+    CameraHandler cam;
 
     public void Start()
     {
@@ -21,6 +25,8 @@ public class Enemy : MonoBehaviour
         Physics2D.IgnoreLayerCollision(8, 8, true);
 
         rigidbody = GetComponent<Rigidbody2D>();
+
+        cam = Camera.main.GetComponent<CameraHandler>();
     }
 
     public void Update()
@@ -54,6 +60,10 @@ public class Enemy : MonoBehaviour
                 SetDirection( 
                     (int) -Mathf.Sign(other.transform.position.x - transform.position.x) 
                     );
+            }
+            else
+            {
+                cam.Shake(landingShake);
             }
             */
         }
