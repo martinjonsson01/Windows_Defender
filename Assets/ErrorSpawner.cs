@@ -6,12 +6,16 @@ public class ErrorSpawner : MonoBehaviour
 {
     public GameObject[] Errors;
     public GameObject WindowsHomeButton;
+    public GameObject ShutDownWindow;
     int chooseError;
     int posx;
     int posy;
     Vector3 chooselocation;
     int chooseamountoferrors;
-    bool Isdone = true;
+    float timer;
+    int errorcreated;
+    int i;
+    public AudioClip ErrorSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,22 +26,27 @@ public class ErrorSpawner : MonoBehaviour
     // It Just works
     void Update()
     {
-        if (WindowsHomeButton.GetComponent<WindowsButton>().health <= 0&&Isdone == true)
+        timer += Time.deltaTime;
+        if (WindowsHomeButton.GetComponent<WindowsButton>().health <= 0)
         {
             print("kill meh");
-            chooseamountoferrors = Random.Range(5,30);
-            for (int i = 0; i<chooseamountoferrors;i++)
-            {
-                for (int y = 0;y<Errors.Length;y++)
+            chooseamountoferrors = Random.Range(5,30);         
+                //  for (int y = 0;y<Errors.Length;y++)
+                if (timer > 0.2f&&errorcreated<chooseamountoferrors)
                 {
-                    posx = Random.Range(-9, 9);
-                    posy = Random.Range(-4,6);
-                    chooselocation = new Vector3(posx, posy);
-                    chooseError = Random.Range(0,Errors.Length);
-                    Instantiate(Errors[chooseError],chooselocation,Quaternion.identity);
+                    posx = Random.Range(-6, 6);
+                    posy = Random.Range(-4, 5);
+                    chooselocation = new Vector3(posx, posy, -1);
+                    chooseError = Random.Range(0, Errors.Length);
+                    Instantiate(Errors[chooseError], chooselocation, Quaternion.identity);
+                     errorcreated++;
+                    timer = 0f;
+                GetComponent<AudioSource>().PlayOneShot(ErrorSound);
                 }
+                if (errorcreated>chooseamountoferrors&&timer > 1f)
+            {
+                ShutDownWindow.SetActive(true);
             }
-            Isdone = false;
         }
     }
     

@@ -5,6 +5,7 @@ using UnityEngine;
 public class SoundScript : MonoBehaviour
 {
     public GameObject WindowsHome;
+    public GameObject ShutDownWindows;
     public AudioClip[] DeathSounds;
     public AudioClip[] StartUpSounds;
        int randomSound;
@@ -17,7 +18,8 @@ public class SoundScript : MonoBehaviour
     }
     private void Update()
     {
-        if (WindowsHome.GetComponent<WindowsButton>().health <=0&&playdeath == true)
+        
+        if (ShutDownWindows.active == true && playdeath == true)
         {
             PlayDeathSound();
             playdeath = false;
