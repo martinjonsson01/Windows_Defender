@@ -5,6 +5,7 @@ using UnityEngine;
 public class WindowsButton : MonoBehaviour
 {
     public int health = 20;
+    public static bool IsDead = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +16,7 @@ public class WindowsButton : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             health--;
+            PappersKorgsScript.EnemysInStorage++;
             Destroy(collision.gameObject);
         }
     }
@@ -22,6 +24,9 @@ public class WindowsButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(health == 0)
+        {
+            IsDead = true;
+        }
     }
 }

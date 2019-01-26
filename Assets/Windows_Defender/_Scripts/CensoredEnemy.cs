@@ -10,5 +10,7 @@ public class CensoredEnemy : MonoBehaviour
     {
         Enemy e = enemies[Random.Range(0, enemies.Length)];
         gameObject.AddComponent(e.GetType());
+
+        GetComponent<Enemy>().SetCanFlip(false);
     }
 }
