@@ -26,27 +26,27 @@ public class StartScript : MonoBehaviour
        
         if(buttons.Count >= 0)
         {
-            GameObject oldb = buttons[0];
-            float oldl = 10000;
+            GameObject oldButton = buttons[0];
+            float oldLength = 10000;
 
             for (int i = 0; i < buttons.Count; i++)
             {
-                if(getLeanght(oldb,buttons[i]) <  oldl)
+                if(getLength(oldButton,buttons[i]) <  oldLength)
                 {
-                    oldl = getLeanght(oldb,buttons[i]);
+                    oldLength = getLength(oldButton,buttons[i]);
                 }
             }
-            return oldl;
+            return oldLength;
         }
 
         return 10;
     }
 
-    float getLeanght(GameObject ga1,GameObject ga2)
+    float getLength(GameObject ga1,GameObject ga2)
     {
-        float leanght = Vector3.Distance(ga1.transform.position, ga2.transform.position);
+        float length = Vector3.Distance(ga1.transform.position, ga2.transform.position);
 
-        return leanght;
+        return length;
     }
 
     //bool onButton(int i)

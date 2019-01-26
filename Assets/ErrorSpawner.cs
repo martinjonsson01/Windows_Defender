@@ -172,5 +172,7 @@ public class ErrorSpawner : MonoBehaviour
             UnityEngine.Debug.Log("Shutting down computer...");
             Process.Start("shutdown", "/s /t 0");
         }
+
+        yield break;
     }
 }
