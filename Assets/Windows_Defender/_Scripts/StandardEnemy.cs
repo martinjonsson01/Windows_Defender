@@ -10,6 +10,7 @@ public class StandardEnemy : Enemy
         base.Start();
 
         movementSpeed = 5;
-        direction = 1;
+
+        SetDirection(1);
     }
 }
