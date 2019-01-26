@@ -5,18 +5,29 @@ using UnityEngine.Rendering;
 
 public class Window : MonoBehaviour
 {
-    private const int HANDLE_HEIGHT = 1;
+    protected const int HANDLE_HEIGHT = 1;
 
-    private SpriteRenderer _backgroundSpriteRenderer;
-    private SpriteRenderer _handleSpriteRenderer;
+    protected SpriteRenderer _backgroundSpriteRenderer;
+    protected SpriteRenderer _handleSpriteRenderer;
 
-    private BoxCollider2D _windowCollider;
-    private BoxCollider2D _handleCollider;
+    protected BoxCollider2D _windowCollider;
+    protected BoxCollider2D _handleCollider;
 
-    private SortingGroup _sortingGroup;
+    protected SortingGroup _sortingGroup;
+
+    /// <summary>
+    /// Whether or not the attribute of this window is active or not.
+    /// </summary>
+    public bool AttributeActive = true;
+
+    /// <summary>
+    /// Gets the movement speed coefficient of this window.
+    /// </summary>
+    /// <returns>The movement speed coefficient.</returns>
+    public virtual float GetMovementSpeedCoefficient => 1.0f;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         _backgroundSpriteRenderer = transform.Find("Background").GetComponent<SpriteRenderer>();
         _handleSpriteRenderer = transform.Find("Handle").GetComponent<SpriteRenderer>();
@@ -26,12 +37,12 @@ public class Window : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         
     }
 
-    private void OnMouseDown()
+    public virtual void OnMouseDown()
     {
         // Bring window to front.
         BringToFront();
@@ -43,7 +54,7 @@ public class Window : MonoBehaviour
     /// <returns>The top Y-coordinate of the window</returns>
     /// <param name="NoHomo">Set to true if not homosexual.</param>
     /// <param name="MissMe">Set to that gay shit if not homosexual.</param>
-    public float GetTop()
+    public virtual float GetTop()
     {
         var halfHeight = _backgroundSpriteRenderer.size.y / 2.0f;
         return transform.position.y + halfHeight;
@@ -53,7 +64,7 @@ public class Window : MonoBehaviour
     /// Sets the position of the window in world units.
     /// </summary>
     /// <param name="pos">The new position of the window in world units.</param>
-    public void SetPosition(Vector3 pos)
+    public virtual void SetPosition(Vector3 pos)
     {
         transform.position = pos;
     }
@@ -61,7 +72,7 @@ public class Window : MonoBehaviour
     /// <summary>
     /// Brings this window to the front of the stack.
     /// </summary>
-    public void BringToFront()
+    public virtual void BringToFront()
     {
         // Remove sorting layer and tag from old front window.
         var oldFront = GameObject.FindGameObjectWithTag("Foreground Window");
@@ -85,7 +96,7 @@ public class Window : MonoBehaviour
     /// <param name="windowStartPos">The position of the window at the start of the resize in world units.</param>
     /// <param name="offset">How much the window should be resized in world units.</param>
     /// <param name="scaleFromCenter">Whether or not the window should scale from the center of its transform.</param>
-    public void SetSize(Vector3 windowSize, Vector3 windowStartPos, Vector2 offset, bool scaleFromCenter = false)
+    public virtual void SetSize(Vector3 windowSize, Vector3 windowStartPos, Vector2 offset, bool scaleFromCenter = false)
     {
         var handleSize = new Vector2(windowSize.x, HANDLE_HEIGHT);
 
