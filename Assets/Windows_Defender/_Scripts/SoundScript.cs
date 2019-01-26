@@ -4,11 +4,36 @@ using UnityEngine;
 
 public class SoundScript : MonoBehaviour
 {
-    
-    int randomSound;
+    public GameObject WindowsHome;
+    public GameObject ShutDownWindows;
+    public AudioClip[] DeathSounds;
+    public AudioClip[] StartUpSounds;
+       int randomSound;
+    bool playdeath;
     // Start is called before the first frame update
-  void PlayDeathSound()
+    private void Start()
+    {
+        PlayStartSound();
+        playdeath = true;
+    }
+    private void Update()
     {
         
+        if (ShutDownWindows.active == true && playdeath == true)
+        {
+            PlayDeathSound();
+            playdeath = false;
+        }
+    }
+
+    public void PlayDeathSound()
+    {
+        randomSound = Random.Range(0,DeathSounds.Length);
+        GetComponent<AudioSource>().PlayOneShot(DeathSounds[randomSound]);
+    }
+    public void PlayStartSound()
+    {
+        randomSound = Random.Range(0, StartUpSounds.Length);
+        GetComponent<AudioSource>().PlayOneShot(StartUpSounds[randomSound]);
     }
 }
