@@ -10,14 +10,13 @@ public class WindowsButton : MonoBehaviour
     {
         
     }
-    private void OnCollisionEnter(Collision Col)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (Col.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
             health--;
-            Destroy(Col.gameObject);
+            Destroy(collision.gameObject);
         }
-        
     }
 
     // Update is called once per frame

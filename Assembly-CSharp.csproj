@@ -60,6 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Windows_Defender\_Scripts\Article13Enemy.cs" />
+    <Compile Include="Assets\Windows_Defender\_Scripts\CensoredEnemy.cs" />
     <Compile Include="Assets\Windows_Defender\_Scripts\CloseDownPC.cs" />
     <Compile Include="Assets\Windows_Defender\_Scripts\Enemy.cs" />
     <Compile Include="Assets\Windows_Defender\_Scripts\SoundScript.cs" />
