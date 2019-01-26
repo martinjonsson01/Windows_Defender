@@ -25,7 +25,8 @@ public class GlitchMovement : MonoBehaviour
 
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.right * enemy.GetDirection(), currentRange);
 
-        if(glitchTimer <= 0 && !RaycastContainsTag(hits, WindowTags.ALLTAGS))
+        if(glitchTimer <= 0 && !RaycastContainsTag(hits, WindowTags.ALLTAGS) && 
+            RaycastIsInside((Vector2) transform.position + Vector2.right * enemy.GetDirection() * currentRange))
         {
             rigidbody.MovePosition(
                 transform.position + Vector3.right * enemy.GetDirection() * currentRange
@@ -33,6 +34,12 @@ public class GlitchMovement : MonoBehaviour
 
             NewTime();
         }
+    }
+
+    bool RaycastIsInside(Vector2 newPos)
+    {
+        Vector3 screenCoords = Camera.main.WorldToViewportPoint(newPos);
+        return screenCoords.x >= 0 && screenCoords.x <= 1;
     }
 
     bool RaycastContainsTag(RaycastHit2D[] hits, string[] tags)

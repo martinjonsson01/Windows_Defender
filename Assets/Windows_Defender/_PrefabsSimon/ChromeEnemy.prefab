@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5186215789613170068}
   - component: {fileID: 3147519661637366431}
   - component: {fileID: 1615560098855634440}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ChromeEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}

@@ -29,4 +29,14 @@ public class ChromeEnemy : Enemy
         rotation += rotationSpeed * -direction * Time.deltaTime;
         transform.eulerAngles = new Vector3(0, 0, rotation);
     }
+
+    new void OnCollisionEnter2D(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision);
+
+        // Enable chrome in Internet explorer
+        Window w = collision.gameObject.GetComponent<Window>();
+        if (w.GetType().Equals(typeof(InternetExplorerWindow)))
+            collision.gameObject.GetComponent<InternetExplorerWindow>().IsChrome(true);
+    }
 }

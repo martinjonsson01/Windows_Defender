@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5047165063240250772}
   - component: {fileID: 9197862029196514101}
   - component: {fileID: 4762581200564929447}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: VirusEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -803735955
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300002, guid: 8c2b3df9fdb88384789f1f580f19b13c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

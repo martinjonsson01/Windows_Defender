@@ -12,7 +12,20 @@ public class Enemy : MonoBehaviour
 
     protected float movementSpeed;
     protected float movementScale;
-    protected float attackPower;
+
+    private float currentAttackPower;
+    private float attackPowerScale;
+    public float attackPower
+    {
+        get
+        {
+            return currentAttackPower * attackPowerScale;
+        }
+        set
+        {
+            currentAttackPower = value;
+        }
+    }
 
     protected float landingShake;
 
@@ -39,7 +52,8 @@ public class Enemy : MonoBehaviour
         cam = Camera.main.GetComponent<CameraHandler>();
 
         movementScale = 1;
-        
+        attackPowerScale = 1;
+
         sprite = GetComponent<SpriteRenderer>().sprite;
     }
 
@@ -50,7 +64,7 @@ public class Enemy : MonoBehaviour
 
         InsideScreen();
     }
-
+    
     protected void InsideScreen()
     {
         // Se till att fienden inte går utanför skärmen
@@ -64,7 +78,21 @@ public class Enemy : MonoBehaviour
         if (leftSide.x < 0 || rightSide.x > 1)
         {
             SetDirectionToMiddle();
+            attackPowerScale += Time.deltaTime * 2;
         }
+        else
+            attackPowerScale = 1;
+
+        print(attackPowerScale);
+
+        // "Lock":ar fienden innanför skärmen
+        Vector3 tempPos = transform.position;
+        Vector3 leftScreenEdge = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0));
+        Vector3 rightScreenEdge = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0));
+
+        tempPos.x = Mathf.Clamp(tempPos.x, leftScreenEdge.x-0.3f, rightScreenEdge.x+0.3f);
+
+        transform.position = tempPos;
     }
 
     public void SetDirectionToMiddle()
@@ -98,7 +126,7 @@ public class Enemy : MonoBehaviour
         if (t == WindowTags.TAG1 || t == WindowTags.TAG2)
         {
             float windowTopY = other.gameObject.GetComponent<Window>().GetTop();
-            float enemyBottonY = transform.position.y - transform.localScale.y * 0.9f;
+            float enemyBottonY = transform.position.y - transform.localScale.y * 0.2f;
 
             // Colliderar ovanpå, eller på sidan av fönstret
             if(windowTopY > enemyBottonY)

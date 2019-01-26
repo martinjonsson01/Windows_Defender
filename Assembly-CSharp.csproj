@@ -75,6 +75,7 @@
     <Compile Include="Assets\Windows_Defender\_Scripts\CloseDownPC.cs" />
     <Compile Include="Assets\Windows_Defender\_Scripts\Enemy.cs" />
     <Compile Include="Assets\Windows_Defender\_Scripts\GlitchMovement.cs" />
+    <Compile Include="Assets\Windows_Defender\_Scripts\InternetExplorerWindow.cs" />
     <Compile Include="Assets\Windows_Defender\_Scripts\Menu\PlayButton.cs" />
     <Compile Include="Assets\Windows_Defender\_Scripts\RollingTextScript.cs" />
     <Compile Include="Assets\Windows_Defender\_Scripts\SoundScript.cs" />
