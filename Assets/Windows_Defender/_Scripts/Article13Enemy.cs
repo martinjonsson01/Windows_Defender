@@ -9,6 +9,7 @@ public class Article13Enemy : Enemy
     {
         base.Start();
 
+        attackPower = 20;
         movementSpeed = 3;
 
         landingShake = 0.5f;
