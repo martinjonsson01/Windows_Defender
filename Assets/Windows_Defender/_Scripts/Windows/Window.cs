@@ -6,14 +6,18 @@ using UnityEngine.Rendering;
 public class Window : MonoBehaviour
 {
     protected const int HANDLE_HEIGHT = 1;
+    protected const int MIN_SIZE = 1;
+    protected const int MAX_SIZE = 20;
 
-    protected SpriteRenderer _backgroundSpriteRenderer;
-    protected SpriteRenderer _handleSpriteRenderer;
+    protected SpriteRenderer backgroundSpriteRenderer;
+    protected SpriteRenderer handleSpriteRenderer;
 
-    protected BoxCollider2D _windowCollider;
-    protected BoxCollider2D _handleCollider;
+    protected BoxCollider2D windowCollider;
+    protected BoxCollider2D handleCollider;
 
-    protected SortingGroup _sortingGroup;
+    protected SortingGroup sortingGroup;
+
+    private GameObject resizeHandle;
 
     /// <summary>
     /// Whether or not the attribute of this window is active or not.
@@ -21,25 +25,35 @@ public class Window : MonoBehaviour
     public bool AttributeActive = true;
 
     /// <summary>
+    /// Whether or not this window is resizable.
+    /// </summary>
+    public bool Resizable = false;
+
+    /// <summary>
     /// Gets the movement speed coefficient of this window.
     /// </summary>
     /// <returns>The movement speed coefficient.</returns>
     public virtual float GetMovementSpeedCoefficient => 1.0f;
 
+    public virtual Vector2 Size => (transform as RectTransform).sizeDelta;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
-        _backgroundSpriteRenderer = transform.Find("Background").GetComponent<SpriteRenderer>();
-        _handleSpriteRenderer = transform.Find("Handle").GetComponent<SpriteRenderer>();
-        _windowCollider = transform.GetComponent<BoxCollider2D>();
-        _handleCollider = transform.Find("Handle").GetComponent<BoxCollider2D>();
-        _sortingGroup = GetComponent<SortingGroup>();
+        backgroundSpriteRenderer = transform.Find("Background").GetComponent<SpriteRenderer>();
+        handleSpriteRenderer = transform.Find("Handle").GetComponent<SpriteRenderer>();
+        windowCollider = transform.GetComponent<BoxCollider2D>();
+        handleCollider = transform.Find("Handle").GetComponent<BoxCollider2D>();
+        sortingGroup = GetComponent<SortingGroup>();
+        resizeHandle = transform.Find("ResizeHandle").gameObject;
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
-        
+        // Make resize handle hidden if window not resizable.
+        if (resizeHandle.activeSelf != Resizable)
+            resizeHandle.SetActive(Resizable);
     }
 
     public virtual void OnMouseDown()
@@ -56,7 +70,7 @@ public class Window : MonoBehaviour
     /// <param name="MissMe">Set to that gay shit if not homosexual.</param>
     public virtual float GetTop()
     {
-        var halfHeight = _backgroundSpriteRenderer.size.y / 2.0f;
+        var halfHeight = backgroundSpriteRenderer.size.y / 2.0f;
         return transform.position.y + halfHeight;
     }
 
@@ -85,7 +99,7 @@ public class Window : MonoBehaviour
         }
 
         // Add sorting layer and tag to this window.
-        _sortingGroup.sortingLayerName = "Foreground Window";
+        sortingGroup.sortingLayerName = "Foreground Window";
         tag = "Foreground Window";
     }
 
@@ -96,20 +110,34 @@ public class Window : MonoBehaviour
     /// <param name="windowStartPos">The position of the window at the start of the resize in world units.</param>
     /// <param name="offset">How much the window should be resized in world units.</param>
     /// <param name="scaleFromCenter">Whether or not the window should scale from the center of its transform.</param>
-    public virtual void SetSize(Vector3 windowSize, Vector3 windowStartPos, Vector2 offset, bool scaleFromCenter = false)
+    public virtual void SetSize(Vector3 windowSize, Vector3 windowStartPos, Vector2 offset, bool scaleFromCenter = false, bool ignoreSizeLimits = false)
     {
+        float sizeX;
+        float sizeY;
+        if (!ignoreSizeLimits)
+        {
+            // Limit window size, both max and min. (x coord limited by itself and y coord limited by itself)
+            sizeX = Mathf.Min(Mathf.Max(windowSize.x, MIN_SIZE), MAX_SIZE);
+            sizeY = Mathf.Min(Mathf.Max(windowSize.y, MIN_SIZE), MAX_SIZE);
+        }
+        else
+        {
+            sizeX = windowSize.x;
+            sizeY = windowSize.y;
+        }
+        windowSize = new Vector3(sizeX, sizeY, 1);
+
         var handleSize = new Vector2(windowSize.x, HANDLE_HEIGHT);
 
         // Change size of window by the offset.
-        _backgroundSpriteRenderer.size = windowSize;
+        backgroundSpriteRenderer.size = windowSize;
         (transform as RectTransform).sizeDelta = windowSize;
-        _windowCollider.size = windowSize;
+        windowCollider.size = windowSize;
         // Change size of handle by the offset.
-        _handleCollider.size = handleSize;
-        _handleSpriteRenderer.size = handleSize;
-        //(_handleSpriteRenderer.gameObject.transform as RectTransform).sizeDelta = handleSize;
+        handleCollider.size = handleSize;
+        handleSpriteRenderer.size = handleSize;
 
-        // TODO: Limit window size, both max and min. (x coord limited by itself and y coord limited by itself)
+        // TODO: 
 
         if (!scaleFromCenter)
         {
