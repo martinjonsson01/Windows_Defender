@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -16,6 +17,15 @@ public class Window : MonoBehaviour
     protected BoxCollider2D handleCollider;
 
     protected SortingGroup sortingGroup;
+
+    [SerializeField]
+    private Material _cropMaterial;
+    private Material _materialInstance;
+
+    [SerializeField]
+    private Sprite[] _crackSprites = new Sprite[4];
+
+    private Camera _mainCam;
 
     private GameObject _resizeHandle;
     
@@ -40,6 +50,9 @@ public class Window : MonoBehaviour
     /// <returns>The movement speed coefficient.</returns>
     public virtual float GetMovementSpeedCoefficient { get; set; } = 1;
 
+    /// <summary>
+    /// Gets the size of the window in world units.
+    /// </summary>
     public virtual Vector2 Size => (transform as RectTransform).sizeDelta;
 
     // Start is called before the first frame update
@@ -51,14 +64,58 @@ public class Window : MonoBehaviour
         handleCollider = transform.Find("Handle").GetComponent<BoxCollider2D>();
         sortingGroup = GetComponent<SortingGroup>();
         _resizeHandle = transform.Find("ResizeHandle").gameObject;
+        _mainCam = Camera.main;
+
+        // Apply instance of crop material to window renderers.
+        _materialInstance = Instantiate(_cropMaterial);
+        for(var i = 0; i < transform.childCount; i++)
+        {
+            var child = transform.GetChild(i);
+            var childRenderer = child.GetComponent<Renderer>();
+            if (childRenderer != null)
+            {
+                childRenderer.sharedMaterial = _materialInstance;
+            }
+        }
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
+        damgeDone();
         // Make resize handle hidden if window not resizable.
         if (_resizeHandle.activeSelf != Resizable)
             _resizeHandle.SetActive(Resizable);
+
+        // Resize shader crop.
+        UpdateShaderCrop();
+
+        // Update window cracks.
+        UpdateWindowCracks();
+    }
+
+    private void UpdateWindowCracks()
+    {
+        
+    }
+
+    private void UpdateShaderCrop()
+    {
+        var rect = transform as RectTransform;
+
+        var minPos = _mainCam.WorldToViewportPoint(rect.offsetMin);
+        var maxPos = _mainCam.WorldToViewportPoint(rect.offsetMax);
+
+        _materialInstance.SetFloat("_MinX", minPos.x);
+        _materialInstance.SetFloat("_MinY", minPos.y);
+        _materialInstance.SetFloat("_MaxX", maxPos.x);
+        _materialInstance.SetFloat("_MaxY", maxPos.y);
+    }
+
+    void damgeDone()
+    {
+        if (Durability <= 0)
+            Destroy(this.gameObject);
     }
 
     public virtual void OnMouseDown()

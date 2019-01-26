@@ -64,7 +64,7 @@ public class ErrorSpawner : MonoBehaviour
         timer += Time.deltaTime;
         if (WindowsHomeButton.GetComponent<WindowsButton>().health <= 0)
         {
-            print("kill meh");
+            //print("kill meh");
             chooseamountoferrors = Random.Range(5, 30);
             //  for (int y = 0;y<Errors.Length;y++)
             if (timer > timetowait && errorcreated < chooseamountoferrors)
@@ -97,7 +97,7 @@ public class ErrorSpawner : MonoBehaviour
         timer += Time.deltaTime;
         if (WindowsHomeButton.GetComponent<WindowsButton>().health <= 0)
         {
-            print("kill meh");
+            //print("kill meh");
             chooseamountoferrors = Random.Range(5, 30);
             //  for (int y = 0;y<Errors.Length;y++)
             if (timer > timetowait && errorcreated < chooseamountoferrors)
@@ -127,7 +127,7 @@ public class ErrorSpawner : MonoBehaviour
         timer += Time.deltaTime;
         if (WindowsHomeButton.GetComponent<WindowsButton>().health <= 0)
         {
-            print("kill meh");
+            //print("kill meh");
             chooseamountoferrors = Random.Range(30, 100);
             //  for (int y = 0;y<Errors.Length;y++)
             if (timer > timetowait && errorcreated < chooseamountoferrors)
@@ -138,7 +138,7 @@ public class ErrorSpawner : MonoBehaviour
                 posy = Random.Range(6, 12);
                 chooselocation = new Vector3(posx, posy, -1);
                 chooseError = Random.Range(0, Errors.Length);
-                GameObject temp = Instantiate(Errors[Random.Range(11, 13)], chooselocation, Quaternion.identity);
+                GameObject temp = Instantiate(Errors[chooseError], chooselocation, Quaternion.identity);
                 errorcreated++;
                 temp.GetComponent<Rigidbody2D>().gravityScale = 1;
                 temp.GetComponent<BoxCollider2D>().enabled = true;

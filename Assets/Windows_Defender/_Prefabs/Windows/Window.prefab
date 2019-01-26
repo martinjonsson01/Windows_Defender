@@ -412,6 +412,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd37647e31805d043a1d228e7df0cf86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cropMaterial: {fileID: 2100000, guid: 6e66b9c4fa5a17440abd0676895db367, type: 2}
+  AttributeActive: 1
+  Resizable: 0
+  Durability: 200
 --- !u!210 &4197187804849071361
 SortingGroup:
   m_ObjectHideFlags: 0
