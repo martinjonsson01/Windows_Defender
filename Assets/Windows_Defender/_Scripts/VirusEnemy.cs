@@ -31,6 +31,7 @@ public class VirusEnemy : Enemy
     {
         base.Start();
 
+        attackPower = 20;
         movementSpeed = 10;
 
         landingShake = 0.5f;
@@ -48,8 +49,6 @@ public class VirusEnemy : Enemy
     
     new void Update()
     {
-        print(direction);
-
         // Direction vector
         InsideScreen();
         dir.x = direction * Mathf.Abs(dir.x);

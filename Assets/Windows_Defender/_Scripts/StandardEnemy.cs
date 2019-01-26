@@ -9,6 +9,7 @@ public class StandardEnemy : Enemy
     {
         base.Start();
 
+        attackPower = 20;
         movementSpeed = 5;
 
         SetDirection(-1);

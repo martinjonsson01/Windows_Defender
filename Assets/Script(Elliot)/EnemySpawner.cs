@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public List<GameObject> EnemyList; // dem olifa slags finderna vi har
    
     public float increases = 1.75f; // hur många enemys det ökar per wave
-    int AmountOfEnemys = 4; // hur många finder det är
+    int AmountOfEnemys = 1; // hur många finder det är
     public int WhatWave; // vilken Wave den är på
     public float timeBeforeSpawn; // hur lång tid det dröjer innan nästa finde kommer
 

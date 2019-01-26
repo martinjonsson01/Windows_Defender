@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour
 
     Sprite sprite;
 
+    float time;
+
     public void Start()
     {
         // Håller koll på alla fönster som fienden kolliderar med just nu
@@ -39,7 +41,7 @@ public class Enemy : MonoBehaviour
         cam = Camera.main.GetComponent<CameraHandler>();
 
         movementScale = 1;
-        
+
         sprite = GetComponent<SpriteRenderer>().sprite;
     }
 
@@ -103,6 +105,13 @@ public class Enemy : MonoBehaviour
             // Colliderar ovanpå, eller på sidan av fönstret
             if(windowTopY > enemyBottonY)
             {
+                if (timer())
+                {
+                    other.gameObject.GetComponent<Window>().Durability -= attackPower;
+                    time = 0;
+                    print(other.gameObject.GetComponent<Window>().Durability);
+                }
+
                 SetDirection( 
                     (int) -Mathf.Sign(other.transform.position.x - transform.position.x) 
                     );
@@ -117,6 +126,15 @@ public class Enemy : MonoBehaviour
 
             currentCollidingWindows.Add(other.gameObject);
         }
+    }
+
+    bool timer()
+    {
+        time += Time.deltaTime;
+        if (time > 0)
+            return true;
+
+        return false;
     }
 
     public void OnCollisionExit2D(Collision2D collision)

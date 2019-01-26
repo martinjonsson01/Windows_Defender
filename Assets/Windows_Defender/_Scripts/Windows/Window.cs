@@ -82,6 +82,7 @@ public class Window : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
+        damgeDone();
         // Make resize handle hidden if window not resizable.
         if (_resizeHandle.activeSelf != Resizable)
             _resizeHandle.SetActive(Resizable);
@@ -109,6 +110,12 @@ public class Window : MonoBehaviour
         _materialInstance.SetFloat("_MinY", minPos.y);
         _materialInstance.SetFloat("_MaxX", maxPos.x);
         _materialInstance.SetFloat("_MaxY", maxPos.y);
+    }
+
+    void damgeDone()
+    {
+        if (Durability <= 0)
+            Destroy(this.gameObject);
     }
 
     public virtual void OnMouseDown()

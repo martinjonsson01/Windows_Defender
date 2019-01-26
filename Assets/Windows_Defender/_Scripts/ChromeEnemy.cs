@@ -12,6 +12,7 @@ public class ChromeEnemy : Enemy
     {
         base.Start();
 
+        attackPower = 20;
         movementSpeed = 8;
         rotationSpeed = (transform.localScale.x * 2) * Mathf.PI * movementSpeed * movementSpeed;
 
