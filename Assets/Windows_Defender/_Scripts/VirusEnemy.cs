@@ -6,6 +6,7 @@ public class VirusEnemy : Enemy
 {
     public GameObject arrowPrefab;
     public GameObject holdingLegsPrefab;
+    
     GameObject arrowObject;
     GameObject holdingLegsObject;
 
@@ -41,7 +42,16 @@ public class VirusEnemy : Enemy
 
         rigidbody.gravityScale = 0;
 
-        animator = GetComponent<Animator>();
+        GetComponent<BoxCollider2D>().isTrigger = true;
+
+        // Scriptet sitter på censored enemy
+        if (GetComponent<Animator>() == null)
+        {
+            arrowPrefab = GetComponent<CensoredEnemy>().virusArrowPrefab;
+            holdingLegsPrefab = GetComponent<CensoredEnemy>().virusHoldingLegsPrefab;
+        }
+        else
+            animator = GetComponent<Animator>();
 
         currentState = VirusState.JUMPING;
         FindBestWindow();
@@ -54,7 +64,8 @@ public class VirusEnemy : Enemy
         dir.x = direction * Mathf.Abs(dir.x);
         
         // Animation
-        animator.SetBool("isJumping", currentState == VirusState.JUMPING);
+        if(animator != null)
+            animator.SetBool("isJumping", currentState == VirusState.JUMPING);
         
         // Timer
         if (currentState != VirusState.JUMPING)
