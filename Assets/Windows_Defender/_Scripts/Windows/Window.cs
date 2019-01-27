@@ -55,7 +55,7 @@ public class Window : MonoBehaviour
     /// Gets the movement speed coefficient of this window.
     /// </summary>
     /// <returns>The movement speed coefficient.</returns>
-    public virtual float GetMovementSpeedCoefficient => 1.0f;
+    public virtual float GetMovementSpeedCoefficient { get; set; } = 1;
 
     /// <summary>
     /// Gets the size of the window in world units.

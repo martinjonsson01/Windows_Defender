@@ -14,6 +14,6 @@ public class StandardEnemy : Enemy
 
         SetDirection(-1);
 
-        ChanceForGlitchComponent(50);
+        ChanceForGlitchComponent(30);
     }
 }
