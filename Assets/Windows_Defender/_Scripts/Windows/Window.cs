@@ -102,6 +102,9 @@ public class Window : MonoBehaviour
         if (_resizeHandle.activeSelf != Resizable)
             _resizeHandle.SetActive(Resizable);
 
+        // If not movable then disable collider.
+        windowCollider.enabled = Movable;
+
         // Resize shader crop.
         UpdateShaderCrop();
 
