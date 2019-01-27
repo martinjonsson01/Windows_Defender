@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     List<GameObject> currentCollidingWindows;
 
     protected Rigidbody2D rigidbody;
-
+    
     protected float movementSpeed;
     protected float movementScale;
 
@@ -26,6 +26,8 @@ public class Enemy : MonoBehaviour
             currentAttackPower = value;
         }
     }
+
+    float originalScale;
 
     protected float landingShake;
 
@@ -55,6 +57,8 @@ public class Enemy : MonoBehaviour
 
         movementScale = 1;
         attackPowerScale = 1;
+
+        originalScale = transform.localScale.x;
 
         sprite = GetComponent<SpriteRenderer>().sprite;
     }
@@ -117,7 +121,7 @@ public class Enemy : MonoBehaviour
         if (canFlipSprite)
         {
             Vector3 tempScale = transform.localScale;
-            tempScale.x = direction;
+            tempScale.x = direction * originalScale;
             transform.localScale = tempScale;
         }
     }
@@ -147,7 +151,7 @@ public class Enemy : MonoBehaviour
             else
             {
                 cam.Shake(landingShake);
-
+                
                 movementScale = other.gameObject.GetComponent<Window>().GetMovementSpeedCoefficient;
             }
 
