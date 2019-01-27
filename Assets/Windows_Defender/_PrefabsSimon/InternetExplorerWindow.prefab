@@ -433,6 +433,7 @@ MonoBehaviour:
   - {fileID: 0}
   AttributeActive: 1
   Resizable: 0
+  Movable: 1
   Durability: 200
   MaxDurability: 200
   chromeSprite: {fileID: 21300000, guid: b441b3cbb706fc8468905e5fd5976c0f, type: 3}
@@ -474,7 +475,7 @@ RectTransform:
   m_GameObject: {fileID: 9087518600951790155}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 8568156841961867230}
   m_RootOrder: 3

@@ -422,6 +422,7 @@ MonoBehaviour:
   - {fileID: 0}
   AttributeActive: 1
   Resizable: 0
+  Movable: 1
   Durability: 50
   MaxDurability: 200
 --- !u!210 &7099011331133310305
@@ -473,7 +474,7 @@ RectTransform:
   m_GameObject: {fileID: 5209175506309495575}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4178344180698735281}
   m_RootOrder: 3
