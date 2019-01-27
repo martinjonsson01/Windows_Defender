@@ -18,7 +18,7 @@ TagManager:
   - 
   - 
   - Enemy
-  - 
+  - Notepad
   - 
   - 
   - 
@@ -53,6 +53,7 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 3491231341
+    locked: 0
   - name: Shutdown
     uniqueID: 704830915
     locked: 0

@@ -14,6 +14,9 @@ public class RollingTextScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<MeshRenderer>().sortingLayerName = "TextLayer";
+        GetComponent<MeshRenderer>().sortingOrder = -10;
+
         TextPro = GetComponent<TextMeshPro>();
         StartCoroutine(ShowText());
     }
@@ -21,7 +24,7 @@ public class RollingTextScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //transform.position = transform.parent.position + transform.parent.GetComponent<SpriteRenderer>().sprite.bounds.size / 4;
     }
 
     IEnumerator ShowText()
@@ -30,7 +33,9 @@ public class RollingTextScript : MonoBehaviour
         {
             currentText = fullText.Substring(0, i);
             TextPro.text = currentText;
-            yield return new WaitForSeconds(delay);
+            //yield return new WaitForSeconds(delay);
         }
+
+        yield return new WaitForSeconds(1);
     }
 }
