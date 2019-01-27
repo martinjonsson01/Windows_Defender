@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 370588e74d92e9d4db79280660b2c015, type: 3}
-  m_Color: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -421,6 +421,7 @@ MonoBehaviour:
   AttributeActive: 1
   Resizable: 0
   Durability: 50
+  MaxDurability: 200
 --- !u!210 &7099011331133310305
 SortingGroup:
   m_ObjectHideFlags: 0
