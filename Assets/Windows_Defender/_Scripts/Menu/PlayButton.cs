@@ -10,6 +10,8 @@ public class PlayButton : MonoBehaviour
     private GameObject _windowSprite;
     [SerializeField]
     private GameObject _quitButton;
+    [SerializeField]
+    GameObject _SpawnButton;
 
     private const float WINDOW_RESIZE_TO_X = 3.0f;
     private const float WINDOW_RESIZE_TO_Y = 2.0f;
@@ -70,6 +72,7 @@ public class PlayButton : MonoBehaviour
 
     private void OnMouseDown()
     {
+        startWaveScript.start = true;
         _animateWindow = true;
     }
 
@@ -77,6 +80,7 @@ public class PlayButton : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
+        _SpawnButton.SetActive(true);
         GameStateManager.SetActive(true);
     }
 }

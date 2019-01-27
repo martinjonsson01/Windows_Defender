@@ -8,13 +8,14 @@ public class SoundScript : MonoBehaviour
     public GameObject ShutDownWindows;
     public AudioClip[] DeathSounds;
     public AudioClip[] StartUpSounds;
-       int randomSound;
+    int randomSound;
     bool playdeath;
     // Start is called before the first frame update
     private void Start()
     {
         PlayStartSound();
         playdeath = true;
+      
     }
     private void Update()
     {

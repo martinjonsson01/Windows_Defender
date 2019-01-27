@@ -25,7 +25,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         WhatWave = 0;
-        startAmount = 5;
+        startAmount = 3;
     }
 
     // Update is called once per frame

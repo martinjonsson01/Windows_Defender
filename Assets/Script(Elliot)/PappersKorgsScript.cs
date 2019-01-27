@@ -69,7 +69,7 @@ public class PappersKorgsScript : MonoBehaviour
             time = 0;
             randx = Random.Range(-(int)Camera.main.orthographicSize, (int)Camera.main.orthographicSize); // så att det blir en random position i Xled
 
-            randPos = new Vector3(randx, -(int)Camera.main.orthographicSize + 1.6f, -1.1f); // respawnar sopptunnan
+            randPos = new Vector3(randx, -(int)Camera.main.orthographicSize + 1.3f, -1.1f); // respawnar sopptunnan
 
             return true;
         }
