@@ -21,7 +21,7 @@ public class ErrorSpawner : MonoBehaviour
     private float timetowait = 1f;
     private float layerdepth = -1;
     private float liftpatricky = -4;
-
+    
     // Start is called before the first frame update
     private void Start()
     {
@@ -85,6 +85,9 @@ public class ErrorSpawner : MonoBehaviour
             }
             if (errorcreated > chooseamountoferrors && timer > 1f)
             {
+                if (!ShutDownWindow.activeSelf)
+                    StartCoroutine(ShutDownComputer(5.0f));
+
                 ShutDownWindow.SetActive(true);
             }
         }
@@ -117,6 +120,9 @@ public class ErrorSpawner : MonoBehaviour
             }
             if (errorcreated > chooseamountoferrors && timer > 1f)
             {
+                if (!ShutDownWindow.activeSelf)
+                    StartCoroutine(ShutDownComputer(5.0f));
+
                 ShutDownWindow.SetActive(true);
             }
         }
@@ -147,9 +153,10 @@ public class ErrorSpawner : MonoBehaviour
             }
             if (errorcreated > chooseamountoferrors && timer > 1f)
             {
-                ShutDownWindow.SetActive(true);
+                if (!ShutDownWindow.activeSelf)
+                    StartCoroutine(ShutDownComputer(5.0f));
 
-                StartCoroutine(ShutDownComputer(5.0f));
+                ShutDownWindow.SetActive(true);
             }
         }
     }

@@ -93,7 +93,7 @@ public class Enemy : MonoBehaviour
         else
             attackPowerScale = 1;
 
-        print(attackPowerScale);
+        //print(attackPowerScale);
 
         // "Lock":ar fienden innanför skärmen
         Vector3 tempPos = transform.position;
