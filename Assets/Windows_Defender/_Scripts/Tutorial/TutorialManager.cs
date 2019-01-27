@@ -10,7 +10,7 @@ public class TutorialManager : MonoBehaviour
     void Start()
     {
         _mainWindow = GameObject.Find("MainWindow").GetComponent<MainWindow>();
-        StartCoroutine(DelayedResize(0.5f));
+        StartCoroutine(DelayedResize(0.05f));
     }
 
     // Update is called once per frame
