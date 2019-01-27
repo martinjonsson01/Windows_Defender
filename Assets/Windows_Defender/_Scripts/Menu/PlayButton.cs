@@ -11,10 +11,10 @@ public class PlayButton : MonoBehaviour
     [SerializeField]
     private GameObject _quitButton;
 
-    private const float WINDOW_RESIZE_TO_X = 3.0f;
-    private const float WINDOW_RESIZE_TO_Y = 2.0f;
+    public const float WINDOW_RESIZE_TO_X = 3.0f;
+    public const float WINDOW_RESIZE_TO_Y = 2.0f;
     
-    private const float ANIMATION_DURATION = 5.0f;
+    public const float ANIMATION_DURATION = 2.0f;
 
     private Window _mainWindow;
 
