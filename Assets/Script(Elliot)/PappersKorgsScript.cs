@@ -36,6 +36,7 @@ public class PappersKorgsScript : MonoBehaviour
 
         if (EnemySpawner.startAmount > 0 && EnemysInStorage == EnemySpawner.startAmount) // så att den mängd fiender som spawnas ska också dö.
         {                                                // Btw glöm inte att göra så ifall en fiende går in i windos knappen ska EnemysInStorage -1.
+            print("fel");
             this.GetComponent<SpriteRenderer>().sprite = Full;//Annars kommer inte nästa runda spawna
             waveTime += Time.deltaTime;
 
@@ -43,7 +44,7 @@ public class PappersKorgsScript : MonoBehaviour
             {
 
                 EnemysInStorage = 0; //så att rundan börjar om
-                EnemySpawner.nextWave = true;
+                //EnemySpawner.nextWave = true;
                 this.GetComponent<SpriteRenderer>().sprite = Emty; // byter bild på sopptunnan(du rensar ju den mellan varje runda)
                 waveTime = 0;
             }

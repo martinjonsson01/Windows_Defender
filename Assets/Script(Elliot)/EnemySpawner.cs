@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public List<GameObject> EnemyList; // dem olifa slags finderna vi har
    
     public float increases = 1.75f; // hur många enemys det ökar per wave
-    int AmountOfEnemys = 1; // hur många finder det är
+    int AmountOfEnemys = 0; // hur många finder det är
     public int WhatWave; // vilken Wave den är på
     public float timeBeforeSpawn; // hur lång tid det dröjer innan nästa finde kommer
 
@@ -17,13 +17,15 @@ public class EnemySpawner : MonoBehaviour
 
     int posX; 
     int randType; // att det blir en random slags finde
+
+    public static bool canSpawn;
+
     public static int startAmount; // hur många bas finder det är
 
     void Start()
     {
-        //nextWave = true;
         WhatWave = 0;
-        startAmount = AmountOfEnemys;
+        startAmount = 5;
     }
 
     // Update is called once per frame
@@ -31,15 +33,13 @@ public class EnemySpawner : MonoBehaviour
     {
         timer += Time.deltaTime; // så att det är lika för alla 
 
-       // print(AmountOfEnemys);
-
         if (AmountOfEnemys <= 0 && nextWave)
         {
             spawnWave();
             WhatWave++;
         }
 
-        if (EnemyList.Count > 0 && timer > timeBeforeSpawn && AmountOfEnemys > 0) // så att det inte spammar finder och att det ska finnas finder programet kan spawna
+        if (EnemyList.Count > 0 && timer > timeBeforeSpawn && AmountOfEnemys > 0 && canSpawn) // så att det inte spammar finder och att det ska finnas finder programet kan spawna
         {
             spawnBoi();
         }
@@ -57,6 +57,9 @@ public class EnemySpawner : MonoBehaviour
             AmountOfEnemys--;
 
             timer = 0;
+
+        if (AmountOfEnemys == 0)
+            canSpawn = false;
     }
     /// <summary>
     /// Så det blir en random fiende
@@ -75,14 +78,14 @@ public class EnemySpawner : MonoBehaviour
     /// <returns>vilken fiende den ska skapa</returns>
     GameObject randomEnemy(int waveNumber)
     {
-        if (waveNumber - 3 >= 0)
+        if (waveNumber - 2 <= 0)
         {
             randType = 0;
         }
 
-        else if (waveNumber -3 <= EnemyList.Count)
+        else if (waveNumber -2 <= EnemyList.Count)
         {
-            randType = Random.Range(0, waveNumber);
+            randType = Random.Range(0, waveNumber-2);
         }
        
 
@@ -94,6 +97,7 @@ public class EnemySpawner : MonoBehaviour
     {
         AmountOfEnemys += Mathf.RoundToInt(startAmount * increases);
         startAmount = AmountOfEnemys;
+        canSpawn = true;
         nextWave = false;
     }
 

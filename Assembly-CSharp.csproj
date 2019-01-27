@@ -53,15 +53,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\closeScript.cs" />
-     <Compile Include="Assets\DurabilityOfWindow.cs" />
      <Compile Include="Assets\ErrorSpawner.cs" />
      <Compile Include="Assets\Script(Elliot)\ElliotIsTryingSomethingHeSouldNotTouch.cs" />
      <Compile Include="Assets\Script(Elliot)\EnemySpawner.cs" />
      <Compile Include="Assets\Script(Elliot)\PappersKorgsScript.cs" />
      <Compile Include="Assets\Script(Elliot)\QuitScript.cs" />
-     <Compile Include="Assets\Script(Elliot)\StartScript.cs" />
      <Compile Include="Assets\Scripts\Standard_Enemy_Script.cs" />
+     <Compile Include="Assets\startWaveScript.cs" />
      <Compile Include="Assets\Windows_Defender\_Scripts\Article13Enemy.cs" />
      <Compile Include="Assets\Windows_Defender\_Scripts\CameraHandler.cs" />
      <Compile Include="Assets\Windows_Defender\_Scripts\CensoredEnemy.cs" />
