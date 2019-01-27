@@ -169,8 +169,11 @@ public class Window : MonoBehaviour
         {
             if (!ignoreLimits)
             {
-                pos.x = Mathf.Clamp(pos.x, -3.3f, 3.3f);
-                pos.y = Mathf.Clamp(pos.y, 0.5f, 2.4f);
+                if(pos.y <= 0.5f)
+                    pos.x = Mathf.Max(pos.x , -3.3f);
+
+                if(pos.x <= -3.3f)
+                    pos.y = Mathf.Max(pos.y, 0.5f);
             }
             transform.position = pos;
         }
