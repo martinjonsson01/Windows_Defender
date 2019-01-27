@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GlitchMovement : MonoBehaviour
 {
+    public GameObject glitchParticleEffect;
+    public Color glitchEffectColor;
+
     Enemy enemy;
 
     Rigidbody2D rigidbody;
@@ -31,6 +34,12 @@ public class GlitchMovement : MonoBehaviour
             rigidbody.MovePosition(
                 transform.position + Vector3.right * enemy.GetDirection() * currentRange
                 );
+
+            GameObject effect = Instantiate(glitchParticleEffect, transform.position, glitchParticleEffect.transform.rotation);
+            Sprite s = GetComponent<SpriteRenderer>().sprite;
+            ParticleSystem.MainModule psm = effect.GetComponent<ParticleSystem>().main;
+            psm.startColor = Color.magenta;
+            Destroy(effect, 1);
 
             NewTime();
         }

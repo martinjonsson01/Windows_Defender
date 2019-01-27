@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CensoredEnemy : MonoBehaviour
 {
+    public Color killParticleColor;
+    public GameObject killParticleEffect;
+    public GameObject glitchParticleEffect;
     public GameObject virusArrowPrefab;
     public GameObject virusHoldingLegsPrefab;
 

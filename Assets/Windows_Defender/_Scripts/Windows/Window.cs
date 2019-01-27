@@ -35,11 +35,16 @@ public class Window : MonoBehaviour
     /// Whether or not the attribute of this window is active or not.
     /// </summary>
     public bool AttributeActive = true;
-    
+
     /// <summary>
     /// Whether or not this window is resizable.
     /// </summary>
     public bool Resizable = false;
+
+    /// <summary>
+    /// Whether or not this window is movable.
+    /// </summary>
+    public bool Movable = true;
 
     /// <summary>
     /// The current durability of this window.
@@ -157,15 +162,21 @@ public class Window : MonoBehaviour
     /// Sets the position of the window in world units.
     /// </summary>
     /// <param name="pos">The new position of the window in world units.</param>
-    public virtual void SetPosition(Vector3 pos)
+    /// <param name="ignoreLimits">Whether or not position limits should be ignored.</param>
+    public virtual void SetPosition(Vector3 pos, bool ignoreLimits = false)
     {
-        if(pos.y <= 0.5f)
-            pos.x = Mathf.Max(pos.x , -3.3f);
+        if (Movable)
+        {
+            if (!ignoreLimits)
+            {
+                if(pos.y <= 0.5f)
+                    pos.x = Mathf.Max(pos.x , -3.3f);
 
-        if(pos.x <= -3.3f)
-            pos.y = Mathf.Max(pos.y, 0.5f);
-
-        transform.position = pos;
+                if(pos.x <= -3.3f)
+                    pos.y = Mathf.Max(pos.y, 0.5f);
+            }
+            transform.position = pos;
+        }
     }
 
     /// <summary>

@@ -6,6 +6,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Enemy : MonoBehaviour
 {
+    public GameObject killParticleEffect;
+    public GameObject glitchParticleEffect;
+    public Color killParticleColor = Color.red;
+
     List<GameObject> currentCollidingWindows;
 
     protected Rigidbody2D rigidbody;
@@ -61,6 +65,13 @@ public class Enemy : MonoBehaviour
         originalScale = transform.localScale.x;
 
         sprite = GetComponent<SpriteRenderer>().sprite;
+
+        if(killParticleEffect == null)
+        {
+            killParticleEffect = GetComponent<CensoredEnemy>().killParticleEffect;
+            killParticleColor = GetComponent<CensoredEnemy>().killParticleColor;
+            glitchParticleEffect = GetComponent<CensoredEnemy>().glitchParticleEffect;
+        }
     }
 
     public void Update()
@@ -93,7 +104,7 @@ public class Enemy : MonoBehaviour
         else
             attackPowerScale = 1;
 
-        print(attackPowerScale);
+        //print(attackPowerScale);
 
         // "Lock":ar fienden innanför skärmen
         Vector3 tempPos = transform.position;
@@ -114,7 +125,14 @@ public class Enemy : MonoBehaviour
     {
         // Finns en möjlighet att fienden blir "buggig"
         if (Random.Range(0, 100) < percent)
+        {
             gameObject.AddComponent<GlitchMovement>();
+            GetComponent<GlitchMovement>().glitchParticleEffect = glitchParticleEffect;
+
+            Color c = killParticleColor;
+            c.a = 0.5f;
+            GetComponent<GlitchMovement>().glitchEffectColor = c;
+        }
     }
 
     public void SetDirection(int d)
@@ -185,7 +203,13 @@ public class Enemy : MonoBehaviour
     }
 
     public void Kill()
-    {
+    { 
+        GameObject effect = Instantiate(killParticleEffect, transform.position, Quaternion.identity);
+        Sprite s = GetComponent<SpriteRenderer>().sprite;
+        ParticleSystem.MainModule psm = effect.GetComponent<ParticleSystem>().main;
+        psm.startColor = killParticleColor;
+        Destroy(effect, 1);
+
         Destroy(this.gameObject);
     }
 

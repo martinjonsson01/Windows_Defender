@@ -5,7 +5,9 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public List<GameObject> EnemyList; // dem olifa slags finderna vi har
-   
+
+    public GameObject[] Windows = new GameObject[4];
+
     public float increases = 1.75f; // hur många enemys det ökar per wave
     int AmountOfEnemys = 0; // hur många finder det är
     public int WhatWave; // vilken Wave den är på
@@ -37,6 +39,12 @@ public class EnemySpawner : MonoBehaviour
         {
             spawnWave();
             WhatWave++;
+
+            if (WhatWave != 1)
+            {
+                // Spawn new window.
+                var window = Instantiate(Windows[(WhatWave - 2) % Windows.Length]).GetComponent<Window>();
+            }
         }
 
         if (EnemyList.Count > 0 && timer > timeBeforeSpawn && AmountOfEnemys > 0 && canSpawn) // så att det inte spammar finder och att det ska finnas finder programet kan spawna
