@@ -71,7 +71,8 @@ public class Enemy : MonoBehaviour
         InsideScreen();
 
         // Uppdatera movementscale
-        movementScale = currentCollidingWindows[0].GetComponent<Window>().GetMovementSpeedCoefficient;
+        if(currentCollidingWindows.Count > 0)
+            movementScale = currentCollidingWindows[0].GetComponent<Window>().GetMovementSpeedCoefficient;
     }
     
     protected void InsideScreen()
