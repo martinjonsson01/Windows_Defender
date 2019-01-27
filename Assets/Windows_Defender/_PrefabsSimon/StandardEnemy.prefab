@@ -142,6 +142,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b92babe32b3ed42bbc462c276355d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  killParticleEffect: {fileID: 3046887932888364455, guid: e500c8f8425ab5c4baa2816ad140be96,
+    type: 3}
+  glitchParticleEffect: {fileID: 1209979816897720165, guid: d5ca4dc1bb03aa24c95f4d3f15e5778b,
+    type: 3}
+  killParticleColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!95 &5574726940856110180
 Animator:
   serializedVersion: 3
