@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class PlayButton : MonoBehaviour
 {
-    public GameObject GameStateManager;
+    [SerializeField]
+    private GameObject GameStateManager;
+    [SerializeField]
+    private GameObject _windowSprite;
+    [SerializeField]
+    private GameObject _quitButton;
 
     private const float WINDOW_RESIZE_TO_X = 3.0f;
     private const float WINDOW_RESIZE_TO_Y = 2.0f;
@@ -40,6 +45,14 @@ public class PlayButton : MonoBehaviour
             var newSize = new Vector2(newSizeX, newSizeY);
             // Resize window.
             _mainWindow.SetSize(newSize, Vector3.zero, Vector2.zero, true, true);
+            // Resize window content.
+            var newScaleX = Mathf.Lerp(1, 0.35f, _animatedForSeconds / ANIMATION_DURATION);
+            var newScaleY = Mathf.Lerp(1, 0.35f, _animatedForSeconds / ANIMATION_DURATION);
+            var newScale = new Vector3(newScaleX, newScaleY, 1);
+            _windowSprite.transform.localScale = newScale;
+            _quitButton.transform.localScale = newScale;
+            transform.localScale = newScale;
+
             // Keep track of how long animation has lasted.
             _animatedForSeconds += Time.deltaTime;
 

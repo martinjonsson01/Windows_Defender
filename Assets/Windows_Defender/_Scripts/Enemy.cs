@@ -9,10 +9,25 @@ public class Enemy : MonoBehaviour
     List<GameObject> currentCollidingWindows;
 
     protected Rigidbody2D rigidbody;
-
+    
     protected float movementSpeed;
     protected float movementScale;
-    protected float attackPower;
+
+    private float currentAttackPower;
+    private float attackPowerScale;
+    public float attackPower
+    {
+        get
+        {
+            return currentAttackPower * attackPowerScale;
+        }
+        set
+        {
+            currentAttackPower = value;
+        }
+    }
+
+    float originalScale;
 
     protected float landingShake;
 
@@ -41,6 +56,9 @@ public class Enemy : MonoBehaviour
         cam = Camera.main.GetComponent<CameraHandler>();
 
         movementScale = 1;
+        attackPowerScale = 1;
+
+        originalScale = transform.localScale.x;
 
         sprite = GetComponent<SpriteRenderer>().sprite;
     }
@@ -51,8 +69,11 @@ public class Enemy : MonoBehaviour
         rigidbody.velocity = (Vector2.right * direction * movementSpeed * movementScale) + (Vector2.up * rigidbody.velocity.y);
 
         InsideScreen();
-    }
 
+        // Uppdatera movementscale
+        movementScale = currentCollidingWindows[0].GetComponent<Window>().GetMovementSpeedCoefficient;
+    }
+    
     protected void InsideScreen()
     {
         // Se till att fienden inte går utanför skärmen
@@ -66,7 +87,21 @@ public class Enemy : MonoBehaviour
         if (leftSide.x < 0 || rightSide.x > 1)
         {
             SetDirectionToMiddle();
+            attackPowerScale += Time.deltaTime * 2;
         }
+        else
+            attackPowerScale = 1;
+
+        print(attackPowerScale);
+
+        // "Lock":ar fienden innanför skärmen
+        Vector3 tempPos = transform.position;
+        Vector3 leftScreenEdge = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0));
+        Vector3 rightScreenEdge = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0));
+
+        tempPos.x = Mathf.Clamp(tempPos.x, leftScreenEdge.x-0.3f, rightScreenEdge.x+0.3f);
+
+        transform.position = tempPos;
     }
 
     public void SetDirectionToMiddle()
@@ -89,7 +124,7 @@ public class Enemy : MonoBehaviour
         if (canFlipSprite)
         {
             Vector3 tempScale = transform.localScale;
-            tempScale.x = direction;
+            tempScale.x = direction * originalScale;
             transform.localScale = tempScale;
         }
     }
@@ -100,7 +135,7 @@ public class Enemy : MonoBehaviour
         if (t == WindowTags.TAG1 || t == WindowTags.TAG2)
         {
             float windowTopY = other.gameObject.GetComponent<Window>().GetTop();
-            float enemyBottonY = transform.position.y - transform.localScale.y * 0.9f;
+            float enemyBottonY = transform.position.y - transform.localScale.y * 0.2f;
 
             // Colliderar ovanpå, eller på sidan av fönstret
             if(windowTopY > enemyBottonY)
@@ -119,8 +154,6 @@ public class Enemy : MonoBehaviour
             else
             {
                 cam.Shake(landingShake);
-
-                movementScale = other.gameObject.GetComponent<Window>().GetMovementSpeedCoefficient;
             }
 
 
@@ -156,6 +189,7 @@ public class Enemy : MonoBehaviour
     }
 
     public int GetDirection() { return direction; }
+    public float GetMovementScale() { return movementScale; }
 }
 
 public class WindowTags

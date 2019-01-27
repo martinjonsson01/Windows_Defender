@@ -67,6 +67,7 @@
      <Compile Include="Assets\Windows_Defender\_Scripts\CloseDownPC.cs" />
      <Compile Include="Assets\Windows_Defender\_Scripts\Enemy.cs" />
      <Compile Include="Assets\Windows_Defender\_Scripts\GlitchMovement.cs" />
+     <Compile Include="Assets\Windows_Defender\_Scripts\InternetExplorerWindow.cs" />
      <Compile Include="Assets\Windows_Defender\_Scripts\Menu\PlayButton.cs" />
      <Compile Include="Assets\Windows_Defender\_Scripts\RollingTextScript.cs" />
      <Compile Include="Assets\Windows_Defender\_Scripts\SoundScript.cs" />
@@ -79,6 +80,7 @@
      <Compile Include="Assets\Windows_Defender\_Scripts\WindowsButton.cs" />
      <Compile Include="Assets\Windows_Defender\_Scripts\VirusEnemy.cs" />
      <Compile Include="Assets\Windows_Defender\_Scripts\VirusLegs.cs" />
+     <Compile Include="Assets\Windows_Defender\_Scripts\YoutubeWindow.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -11,11 +13,21 @@ public class Window : MonoBehaviour
 
     protected SpriteRenderer backgroundSpriteRenderer;
     protected SpriteRenderer handleSpriteRenderer;
+    protected SpriteRenderer crackRenderer;
 
     protected BoxCollider2D windowCollider;
     protected BoxCollider2D handleCollider;
 
     protected SortingGroup sortingGroup;
+
+    [SerializeField]
+    private Material _cropMaterial;
+    private Material _materialInstance;
+
+    [SerializeField]
+    private Sprite[] _crackSprites = new Sprite[5];
+
+    private Camera _mainCam;
 
     private GameObject _resizeHandle;
     
@@ -30,39 +42,94 @@ public class Window : MonoBehaviour
     public bool Resizable = false;
 
     /// <summary>
-    /// The durability of this window.
+    /// The current durability of this window.
     /// </summary>
     public float Durability = 200;
+
+    /// <summary>
+    /// The maximum durability of this window.
+    /// </summary>
+    public float MaxDurability = 200;
 
     /// <summary>
     /// Gets the movement speed coefficient of this window.
     /// </summary>
     /// <returns>The movement speed coefficient.</returns>
-    public virtual float GetMovementSpeedCoefficient => 1.0f;
+    public virtual float GetMovementSpeedCoefficient { get; set; } = 1;
 
+    /// <summary>
+    /// Gets the size of the window in world units.
+    /// </summary>
     public virtual Vector2 Size => (transform as RectTransform).sizeDelta;
 
     // Start is called before the first frame update
     public virtual void Start()
     {
         backgroundSpriteRenderer = transform.Find("Background").GetComponent<SpriteRenderer>();
+        crackRenderer = transform.Find("Cracks").GetComponent<SpriteRenderer>();
         handleSpriteRenderer = transform.Find("Handle").GetComponent<SpriteRenderer>();
         windowCollider = transform.GetComponent<BoxCollider2D>();
         handleCollider = transform.Find("Handle").GetComponent<BoxCollider2D>();
         sortingGroup = GetComponent<SortingGroup>();
         _resizeHandle = transform.Find("ResizeHandle").gameObject;
+        _mainCam = Camera.main;
+
+        // Apply instance of crop material to window renderers.
+        _materialInstance = Instantiate(_cropMaterial);
+        for(var i = 0; i < transform.childCount; i++)
+        {
+            var child = transform.GetChild(i);
+            var childRenderer = child.GetComponent<Renderer>();
+            if (childRenderer != null)
+            {
+                childRenderer.sharedMaterial = _materialInstance;
+            }
+        }
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
-        damgeDone();
+        // Check if at zero durability.
+        DamageDone();
+
         // Make resize handle hidden if window not resizable.
         if (_resizeHandle.activeSelf != Resizable)
             _resizeHandle.SetActive(Resizable);
+
+        // Resize shader crop.
+        UpdateShaderCrop();
+
+        // Update window cracks.
+        UpdateWindowCracks();
+    }
+    
+    private void UpdateWindowCracks()
+    {
+        var unroundedIndex = Durability / MaxDurability * 5.0f;
+        var crackIndex = ((int)Math.Round(unroundedIndex, 0)) - 1;
+        crackIndex = Math.Max(0, crackIndex);
+
+        if (crackIndex > 4 || crackIndex < 0) Debugger.Break();
+        var currentCrack = _crackSprites[crackIndex];
+        if (crackRenderer.sprite != currentCrack)
+            crackRenderer.sprite = currentCrack;
     }
 
-    void damgeDone()
+    private void UpdateShaderCrop()
+    {
+        var rect = transform as RectTransform;
+
+        var minPos = _mainCam.WorldToViewportPoint(rect.offsetMin);
+        var maxPos = _mainCam.WorldToViewportPoint(rect.offsetMax);
+
+        _materialInstance.SetFloat("_MinX", minPos.x);
+        _materialInstance.SetFloat("_MinY", minPos.y);
+        _materialInstance.SetFloat("_MaxX", maxPos.x);
+        _materialInstance.SetFloat("_MaxY", maxPos.y);
+    }
+
+    void DamageDone()
     {
         if (Durability <= 0)
             Destroy(this.gameObject);
@@ -93,8 +160,6 @@ public class Window : MonoBehaviour
     public virtual void SetPosition(Vector3 pos)
     {
         transform.position = pos;
-
-
     }
 
     /// <summary>
@@ -145,13 +210,14 @@ public class Window : MonoBehaviour
 
         // Change size of window by the offset.
         backgroundSpriteRenderer.size = windowSize;
+        crackRenderer.size = windowSize;
         (transform as RectTransform).sizeDelta = windowSize;
         windowCollider.size = windowSize;
         // Change size of handle by the offset.
         handleCollider.size = handleSize;
         handleSpriteRenderer.size = handleSize;
 
-        // TODO: 
+        // TODO: ur mom
 
         if (!scaleFromCenter)
         {
