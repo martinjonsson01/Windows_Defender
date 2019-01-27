@@ -1298,7 +1298,7 @@ MonoBehaviour:
   - {fileID: 929603497874184752, guid: d099c16d88646554090cc7299ead43e2, type: 3}
   - {fileID: 1615560098855634484, guid: 19f6983fab7133741b9fb3952755788c, type: 3}
   - {fileID: 91841442143587874, guid: 62e468a4d7a285149b1e8948860cc7b7, type: 3}
-  increases: 1.3
+  increases: 3
   WhatWave: 0
   timeBeforeSpawn: 1
 --- !u!1 &1798791594

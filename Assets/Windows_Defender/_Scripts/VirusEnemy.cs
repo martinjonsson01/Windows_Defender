@@ -91,8 +91,10 @@ public class VirusEnemy : Enemy
 
                     currentState = VirusState.JUMPING;
 
-                    transform.parent = null;
+                    transform.parent.GetComponent<Window>().AttributeActive = true;
 
+                    transform.parent = null;
+                    
                     Destroy(arrowObject);
                     Destroy(holdingLegsObject);
                 }
@@ -176,6 +178,7 @@ public class VirusEnemy : Enemy
 
                 lastHeldWindow = collParent;
 
+                collParent.GetComponent<Window>().AttributeActive = false;
 
                 dir = Vector2.zero;
                 transform.position = collision.gameObject.transform.position;
