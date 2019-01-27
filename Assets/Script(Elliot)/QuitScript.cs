@@ -6,6 +6,6 @@ public class QuitScript : MonoBehaviour
 {
     void OnMouseDown()
     {
-        print("nej");
+        Application.Quit();
     }
 }
