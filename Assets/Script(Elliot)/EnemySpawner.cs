@@ -75,14 +75,14 @@ public class EnemySpawner : MonoBehaviour
     /// <returns>vilken fiende den ska skapa</returns>
     GameObject randomEnemy(int waveNumber)
     {
-        if (waveNumber - 3 >= 0)
+        if (waveNumber - 2 <= 0)
         {
             randType = 0;
         }
 
-        else if (waveNumber -3 <= EnemyList.Count)
+        else if (waveNumber -2 <= EnemyList.Count)
         {
-            randType = Random.Range(0, waveNumber);
+            randType = Random.Range(0, waveNumber-2);
         }
        
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -12,6 +13,7 @@ public class Window : MonoBehaviour
 
     protected SpriteRenderer backgroundSpriteRenderer;
     protected SpriteRenderer handleSpriteRenderer;
+    protected SpriteRenderer crackRenderer;
 
     protected BoxCollider2D windowCollider;
     protected BoxCollider2D handleCollider;
@@ -23,7 +25,7 @@ public class Window : MonoBehaviour
     private Material _materialInstance;
 
     [SerializeField]
-    private Sprite[] _crackSprites = new Sprite[4];
+    private Sprite[] _crackSprites = new Sprite[5];
 
     private Camera _mainCam;
 
@@ -40,9 +42,14 @@ public class Window : MonoBehaviour
     public bool Resizable = false;
 
     /// <summary>
-    /// The durability of this window.
+    /// The current durability of this window.
     /// </summary>
     public float Durability = 200;
+
+    /// <summary>
+    /// The maximum durability of this window.
+    /// </summary>
+    public float MaxDurability = 200;
 
     /// <summary>
     /// Gets the movement speed coefficient of this window.
@@ -59,6 +66,7 @@ public class Window : MonoBehaviour
     public virtual void Start()
     {
         backgroundSpriteRenderer = transform.Find("Background").GetComponent<SpriteRenderer>();
+        crackRenderer = transform.Find("Cracks").GetComponent<SpriteRenderer>();
         handleSpriteRenderer = transform.Find("Handle").GetComponent<SpriteRenderer>();
         windowCollider = transform.GetComponent<BoxCollider2D>();
         handleCollider = transform.Find("Handle").GetComponent<BoxCollider2D>();
@@ -82,7 +90,9 @@ public class Window : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
-        damgeDone();
+        // Check if at zero durability.
+        DamageDone();
+
         // Make resize handle hidden if window not resizable.
         if (_resizeHandle.activeSelf != Resizable)
             _resizeHandle.SetActive(Resizable);
@@ -93,10 +103,17 @@ public class Window : MonoBehaviour
         // Update window cracks.
         UpdateWindowCracks();
     }
-
+    
     private void UpdateWindowCracks()
     {
-        
+        var unroundedIndex = Durability / MaxDurability * 5.0f;
+        var crackIndex = ((int)Math.Round(unroundedIndex, 0)) - 1;
+        crackIndex = Math.Max(0, crackIndex);
+
+        if (crackIndex > 4 || crackIndex < 0) Debugger.Break();
+        var currentCrack = _crackSprites[crackIndex];
+        if (crackRenderer.sprite != currentCrack)
+            crackRenderer.sprite = currentCrack;
     }
 
     private void UpdateShaderCrop()
@@ -112,7 +129,7 @@ public class Window : MonoBehaviour
         _materialInstance.SetFloat("_MaxY", maxPos.y);
     }
 
-    void damgeDone()
+    void DamageDone()
     {
         if (Durability <= 0)
             Destroy(this.gameObject);
@@ -143,8 +160,6 @@ public class Window : MonoBehaviour
     public virtual void SetPosition(Vector3 pos)
     {
         transform.position = pos;
-
-
     }
 
     /// <summary>
@@ -195,13 +210,14 @@ public class Window : MonoBehaviour
 
         // Change size of window by the offset.
         backgroundSpriteRenderer.size = windowSize;
+        crackRenderer.size = windowSize;
         (transform as RectTransform).sizeDelta = windowSize;
         windowCollider.size = windowSize;
         // Change size of handle by the offset.
         handleCollider.size = handleSize;
         handleSpriteRenderer.size = handleSize;
 
-        // TODO: 
+        // TODO: ur mom
 
         if (!scaleFromCenter)
         {
