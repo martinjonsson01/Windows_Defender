@@ -23,10 +23,10 @@ public class GlitchMovement : MonoBehaviour
     {
         glitchTimer -= Time.deltaTime;
 
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.right * enemy.GetDirection(), currentRange);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.right * enemy.GetDirection(), currentRange * enemy.GetMovementScale());
 
         if(glitchTimer <= 0 && !RaycastContainsTag(hits, WindowTags.ALLTAGS) && 
-            RaycastIsInside((Vector2) transform.position + Vector2.right * enemy.GetDirection() * currentRange))
+            RaycastIsInside((Vector2) transform.position + Vector2.right * enemy.GetDirection() * currentRange * enemy.GetMovementScale()))
         {
             rigidbody.MovePosition(
                 transform.position + Vector3.right * enemy.GetDirection() * currentRange

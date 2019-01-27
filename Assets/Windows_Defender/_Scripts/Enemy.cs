@@ -69,6 +69,9 @@ public class Enemy : MonoBehaviour
         rigidbody.velocity = (Vector2.right * direction * movementSpeed * movementScale) + (Vector2.up * rigidbody.velocity.y);
 
         InsideScreen();
+
+        // Uppdatera movementscale
+        movementScale = currentCollidingWindows[0].GetComponent<Window>().GetMovementSpeedCoefficient;
     }
     
     protected void InsideScreen()
@@ -151,8 +154,6 @@ public class Enemy : MonoBehaviour
             else
             {
                 cam.Shake(landingShake);
-                
-                movementScale = other.gameObject.GetComponent<Window>().GetMovementSpeedCoefficient;
             }
 
 
@@ -188,6 +189,7 @@ public class Enemy : MonoBehaviour
     }
 
     public int GetDirection() { return direction; }
+    public float GetMovementScale() { return movementScale; }
 }
 
 public class WindowTags
