@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad09ab8a69a3e54eb3ae2884c6045de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damagedSound: {fileID: 0}
   health: 3
 --- !u!61 &209434478
 BoxCollider2D:
@@ -70,7 +71,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.56, y: 2.56}
+  m_Size: {x: 6.42, y: 11.12}
   m_EdgeRadius: 0
 --- !u!212 &209434477
 SpriteRenderer:

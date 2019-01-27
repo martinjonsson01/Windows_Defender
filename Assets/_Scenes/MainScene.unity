@@ -295,6 +295,10 @@ PrefabInstance:
       propertyPath: _damagedSound
       value: 
       objectReference: {fileID: 8300000, guid: c3ebc938dbe5b2642a211b1fc85bc19f, type: 3}
+    - target: {fileID: 209434476, guid: 38bd47b5e973d524ca84dd75ed8bd421, type: 3}
+      propertyPath: health
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 209434477, guid: 38bd47b5e973d524ca84dd75ed8bd421, type: 3}
       propertyPath: m_SortingOrder
       value: 36

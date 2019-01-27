@@ -32,7 +32,7 @@ public class InternetExplorerWindow : Window
             GetMovementSpeedCoefficient = chromeSpeedup;
 
             
-            transform.GetChild(transform.childCount - 1).GetComponent<SpriteRenderer>().sprite = chromeSprite;
+            transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = chromeSprite;
         }
         else
             GetMovementSpeedCoefficient = normalSlowdownSpeed;

@@ -36,7 +36,7 @@ public class ChromeEnemy : Enemy
 
         // Enable chrome in Internet explorer
         Window w = collision.gameObject.GetComponent<Window>();
-        if (w.GetType().Equals(typeof(InternetExplorerWindow)))
+        if (w != null && w.GetType().Equals(typeof(InternetExplorerWindow)))
             collision.gameObject.GetComponent<InternetExplorerWindow>().IsChrome(true);
     }
 }
