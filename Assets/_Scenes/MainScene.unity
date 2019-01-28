@@ -295,6 +295,10 @@ PrefabInstance:
       propertyPath: _damagedSound
       value: 
       objectReference: {fileID: 8300000, guid: c3ebc938dbe5b2642a211b1fc85bc19f, type: 3}
+    - target: {fileID: 209434476, guid: 38bd47b5e973d524ca84dd75ed8bd421, type: 3}
+      propertyPath: health
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 209434477, guid: 38bd47b5e973d524ca84dd75ed8bd421, type: 3}
       propertyPath: m_SortingOrder
       value: 36
@@ -1550,3 +1554,23 @@ PrefabInstance:
       objectReference: {fileID: 1757818428}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef9863439a171dd4aa7bf521e063cf71, type: 3}
+--- !u!1 &8089943685585126188 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2208750817510824220, guid: ef9863439a171dd4aa7bf521e063cf71,
+    type: 3}
+  m_PrefabInstance: {fileID: 8089943685585126187}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8089943685585126189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8089943685585126188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2ce7ba166c1ee24cad07ed3ed3b3c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _notepadWindow: {fileID: 7512808419623483297, guid: 04016e1e932615d49924a9f6f03b289a,
+    type: 3}

@@ -30,12 +30,16 @@ public class EnemySpawner : MonoBehaviour
         startAmount = 3;
     }
 
+    int enemyCountWhenWindowSpawned;
+
     // Update is called once per frame
     void Update()
     {
+        print(WhatWave);
+
         timer += Time.deltaTime; // så att det är lika för alla 
 
-        if (AmountOfEnemys <= 0 && nextWave)
+        if (AmountOfEnemys <= 0 || (AmountOfEnemys == Mathf.FloorToInt(startAmount / 2) && enemyCountWhenWindowSpawned != AmountOfEnemys))
         {
             spawnWave();
             WhatWave++;
@@ -44,6 +48,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 // Spawn new window.
                 var window = Instantiate(Windows[(WhatWave - 2) % Windows.Length]).GetComponent<Window>();
+                enemyCountWhenWindowSpawned = GameObject.FindGameObjectsWithTag("Enemy").Length;
             }
         }
 
@@ -86,7 +91,8 @@ public class EnemySpawner : MonoBehaviour
     /// <returns>vilken fiende den ska skapa</returns>
     GameObject randomEnemy(int waveNumber)
     {
-        if (waveNumber - 2 <= 0)
+        /*
+        if (waveNumber - 1 <= 0)
         {
             randType = 0;
         }
@@ -95,7 +101,8 @@ public class EnemySpawner : MonoBehaviour
         {
             randType = Random.Range(0, waveNumber-2);
         }
-       
+        */
+        randType = Random.Range(0, EnemyList.Count);
 
         return EnemyList[randType];
        

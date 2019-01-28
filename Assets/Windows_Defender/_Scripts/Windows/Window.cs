@@ -102,6 +102,9 @@ public class Window : MonoBehaviour
         if (_resizeHandle.activeSelf != Resizable)
             _resizeHandle.SetActive(Resizable);
 
+        // If not movable then disable collider.
+        windowCollider.enabled = Movable;
+
         // Resize shader crop.
         UpdateShaderCrop();
 
@@ -169,11 +172,14 @@ public class Window : MonoBehaviour
         {
             if (!ignoreLimits)
             {
-                if(pos.y <= 0.5f)
-                    pos.x = Mathf.Max(pos.x , -3.3f);
+                float xx = -5.8f;
+                float yy = -1.3f;
 
-                if(pos.x <= -3.3f)
-                    pos.y = Mathf.Max(pos.y, 0.5f);
+                if(pos.y <= yy)
+                    pos.x = Mathf.Max(pos.x , xx);
+
+                if(pos.x <= xx)
+                    pos.y = Mathf.Max(pos.y, yy);
             }
             transform.position = pos;
         }

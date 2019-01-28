@@ -77,6 +77,7 @@
     <Compile Include="Assets\Windows_Defender\_Scripts\InternetExplorerWindow.cs" />
     <Compile Include="Assets\Windows_Defender\_Scripts\MalwareBytesWindow.cs" />
     <Compile Include="Assets\Windows_Defender\_Scripts\Menu\ExitTutorialButton.cs" />
+    <Compile Include="Assets\Windows_Defender\_Scripts\Menu\LoreButton.cs" />
     <Compile Include="Assets\Windows_Defender\_Scripts\Menu\PlayButton.cs" />
     <Compile Include="Assets\Windows_Defender\_Scripts\Menu\TutorialButton.cs" />
     <Compile Include="Assets\Windows_Defender\_Scripts\RollingTextScript.cs" />

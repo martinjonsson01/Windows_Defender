@@ -197,7 +197,20 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: fdfsfdfsdfsdffsse
+  m_text: "The year is 2018. The internet has taken up arms against the blight that
+    is T-Series, with PewDiePie leading the frontlines. Your family has been sent
+    out of country, however due to you and your diagnosis, you were left behind. While
+    alone in your house, you realise that you will need to come up with your own entertainment.
+    However on your search, you discover something darker than T-Series itself, is
+    going on behind the scenes. HentaiHaven is shutting down. In fear of losing your
+    favorite hentai, you download as much as you can before the website comes crashing
+    down. However in your rampage of downloading, something else apart from hentai
+    got in.  Ad-ware has arrived, and the only hope of saving your PC, is your home
+    button. Become who you were born to be, become...the Windows Defender.    \nThis
+    post (and game) was made by [B]ose's [B]itches gang:\nElliot Bodin,                                 \nSimon
+    Hultsborn,             \nRickard ([B]ose) L\xF6fgren,                  \nMartin
+    Jonsson,                \nAidan Pippard,                 \nSebastian Zychlewicz,
+    \      \nMalcolm Axglimt "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -225,8 +238,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 4.5
-  m_fontSizeBase: 4.5
+  m_fontSize: 2
+  m_fontSizeBase: 2
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -266,12 +279,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 5423014932438132502}
-    characterCount: 17
+    characterCount: 1091
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 271
+    wordCount: 166
     linkCount: 0
-    lineCount: 1
+    lineCount: 16
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -304,8 +317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e8fbefda4fbb5498b1f2397988f169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0.1
-  fullText: 'The year is 2018. The internet has taken up arms against the blight that
+  delay: 0.05
+  fullText: "The year is 2018. The internet has taken up arms against the blight that
     is T-Series, with PewDiePie leading the frontlines. Your family has been sent
     out of country, however due to you and your diagnosis, you were left behind. While
     alone in your house, you realise that you will need to come up with your own entertainment.
@@ -314,7 +327,15 @@ MonoBehaviour:
     favorite hentai, you download as much as you can before the website comes crashing
     down. However in your rampage of downloading, something else apart from hentai
     got in.  Ad-ware has arrived, and the only hope of saving your PC, is your home
-    button. Become who you were born to be, become...the Windows Defender. '
+    button. Become who you were born to be, become...the Windows Defender.                                                                                                                                            This
+    post (and game) was made by [B]ose's [B]itches gang:                                                                                                                                              Elliot
+    Bodin,                                                                                                                                              Simon
+    Hultsborn,                                                                                                                                              Rickard
+    ([B]ose) L\xF6fgren,                                                                                                                                     Martin
+    Jonsson,                                                                                                                                                Aidan
+    Pippard,                                                                                                                                                                                             Sebastian
+    Zychlewicz,                                                                                                                                   Malcolm
+    Axglimt "
 --- !u!1 &5423014933446292048
 GameObject:
   m_ObjectHideFlags: 0
